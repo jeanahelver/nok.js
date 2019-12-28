@@ -122,7 +122,8 @@ nok ={
         offset =0
         for (let i = 0; i < number.length; i++) {
             let t = number.charCodeAt(i)
-            if(t<48 || t>57) t=58 
+            if(t == 45) t=59
+            else if(t<48 || t>57) t=58 
             nok.sprite(nok.num[t-48],x+offset,y)
             offset += nok.num[t-48][0].length + 1
         }
@@ -243,4 +244,7 @@ nok.num =[
         [0],
         [1],
         [1],],
+    [   [0,0,0],
+        [0],
+        [1,1,1]],
 ]
