@@ -25,3 +25,6 @@ running at aproximatly 15 fps at 84x48 pixels.
   * `nok.rect(pattern, x, y, width, height)`
   * `nok.circle(radius, x, y)`
   * `nok.number(value, x, y)` drawing number values in the snake score font
+  
+  
+ ![button map](/buttons.png)
