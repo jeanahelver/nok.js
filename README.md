@@ -27,7 +27,7 @@ running at aproximatly 15 fps at 84x48 pixels.
   * `nok.number(value, x, y)` drawing number values in the snake score font
   
  
- ### nok.key
+ ### input
   * `nok.key.one` 1
   * `nok.key.two` 2 
   * `nok.key.three` 3 
