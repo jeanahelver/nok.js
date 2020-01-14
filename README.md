@@ -39,5 +39,6 @@ running at aproximatly 15 fps at 84x48 pixels.
   * `nok.key.nine` 9 
   * `nok.key.star` * 
   * `nok.key.zero` 0 
-  * `nok.key.octothorpe` # 
+  * `nok.key.octothorpe`\#
+  
  ![button map](/buttons.png)
