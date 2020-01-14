@@ -12,15 +12,149 @@ document.body.appendChild(canvas);
 
 const WIDTH = 84
 const HEIGHT = 48
-const SCALEH = 9 //scaling the pixels to 7*9 to aproximate the pixels
-const SCALEW = 7
+var SCALEH = 4 
+var SCALEW = 4
 const FPS = 15 //locking the framerate to a lcd like speed
 
 canvas.width = WIDTH*SCALEW
 canvas.height = HEIGHT*SCALEH
 const ctx = canvas.getContext("2d");
 
+window.addEventListener("keydown" ,(event)=>{
+    switch (event.code) {
+        case "Numpad7":
+        case "Digit1":
+            nok.key.one = true;
+            break;
+        case "Numpad8":
+        case "Digit2":
+            nok.key.two = true;
+            break;
+        case "Numpad9":
+        case "Digit3":
+            nok.key.three = true;
+            break;
+        case "Numpad4":
+        case "KeyQ":
+        case "Digit4":
+            nok.key.four = true;
+            break;
+        case "Numpad5":
+        case "KeyW":
+        case "Digit5":
+        case "ArrowUp":
+            nok.key.five = true;
+            break;
+        case "Numpad6":
+        case "KeyE":
+        case "Digit6":
+            nok.key.six = true;
+            break;
+        case "Numpad1":
+        case "KeyA":
+        case "Digit7":
+        case "ArrowLeft":
+            nok.key.seven = true;
+            break;
+        case "Numpad2":
+        case "KeyS":
+        case "Digit8":
+        case "ArrowDown":
+            nok.key.eight = true;
+            break;
+        case "Numpad3":
+        case "KeyD":
+        case "Digit9":
+        case "ArrowRight":
+            nok.key.nine = true;
+            break;
+        case "Numpad0":
+        case "Keyz":
+            nok.key.star = true;
+            break;
+        case "NumpadDecimal":
+        case "KeyX":
+        case "Digit0":
+            nok.key.zero = true;
+            break;
+        case "NumpadEnter":
+        case "KeyC":
+            nok.key.octothorpe = true;
+            break;
+        
+    }
+});
+window.addEventListener("keyup" ,(event)=>{
+    switch (event.code) {
+        case "Numpad7":
+        case "Digit1":
+            nok.key.one = false;
+            break;
+        case "Numpad8":
+        case "Digit2":
+            nok.key.two = false;
+            break;
+        case "Numpad9":
+        case "Digit3":
+            nok.key.three = false;
+            break;
+        case "Numpad4":
+        case "KeyQ":
+        case "Digit4":
+            nok.key.four = false;
+            break;
+        case "Numpad5":
+        case "KeyW":
+        case "Digit5":
+        case "ArrowUp":
+            nok.key.five = false;
+            break;
+        case "Numpad6":
+        case "KeyE":
+        case "Digit6":
+            nok.key.six = false;
+            break;
+        case "Numpad1":
+        case "KeyA":
+        case "Digit7":
+        case "ArrowLeft":
+            nok.key.seven = false;
+            break;
+        case "Numpad2":
+        case "KeyS":
+        case "Digit8":
+        case "ArrowDown":
+            nok.key.eight = false;
+            break;
+        case "Numpad3":
+        case "KeyD":
+        case "Digit9":
+        case "ArrowRight":
+            nok.key.nine = false;
+            break;
+        case "Numpad0":
+        case "Keyz":
+            nok.key.star = false;
+            break;
+        case "NumpadDecimal":
+        case "KeyX":
+        case "Digit0":
+            nok.key.zero = false;
+            break;
+        case "NumpadEnter":
+        case "KeyC":
+            nok.key.octothorpe = false;
+            break;
+        
+    }
+});
+
 nok ={
+    key:{   one:false,two:false,three:false,
+            four:false,five:false,six:false,
+            seven:false,eight:false,nine:false,
+            star:false,zero:false,octothorpe:false
+    },
     _lasttime:0,_dt:0,
     clear:(patern)=>{
         for (let x = 0; x < WIDTH; x++) {
@@ -127,9 +261,22 @@ nok ={
             nok.sprite(nok.num[t-48],x+offset,y)
             offset += nok.num[t-48][0].length + 1
         }
+    },
+    resize:()=>{
+        if(window.innerHeight/HEIGHT < window.innerWidth/WIDTH){
+            SCALEW = (window.innerHeight/HEIGHT)
+            SCALEH = (window.innerHeight/HEIGHT)
+        }else{
+            SCALEW = (window.innerWidth/WIDTH)
+            SCALEH = (window.innerWidth/WIDTH)
+        }
+        canvas.width = WIDTH*SCALEW
+        canvas.height = HEIGHT*SCALEH
     }
 }
 window.addEventListener('load', ()=>{
+    window.addEventListener("resize", nok.resize);
+    nok.resize()
     //initilize screen
     nok.screen = []
     for (let x = 0; x < WIDTH; x++) {
